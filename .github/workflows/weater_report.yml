@@ -1,23 +1,26 @@
-nmae: Daily weather report check
+name: Daily Weather Check
 
-on: 
+on:
   schedule:
-# This runs at 00:00 UTC every day (5:30 AM IST)
-	- cron: '00***'
-  workflow_dispatch: # Allows you to run it  manually  for testing
+    # This runs at 00:00 UTC every day (5:30 AM IST)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to run it manually for testing
 
 jobs:
   build:
-	runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-	steps:
-	- name: Chechout repository code
-	  uses: actions/setup-python@v4
-     	  with:
-        	python-version:['3.9', '3.10']
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
 
-	- name: Install Dependencies
-	  run: pip install requests
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
-	- name: Run weather script
-	  run: python weather.py
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run weather script
+      run: python weather.py
