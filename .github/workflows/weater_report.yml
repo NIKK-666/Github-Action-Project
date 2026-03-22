@@ -1,0 +1,23 @@
+nmae: Daily weather report check
+
+on: 
+  schedule:
+# This runs at 00:00 UTC every day (5:30 AM IST)
+	- cron: '00***'
+  workflow_dispatch: # Allows you to run it  manually  for testing
+
+jobs:
+  build:
+	runs-on: ubuntu-latest
+
+	steps:
+	- name: Chechout repository code
+	  uses: actions/setup-python@v4
+     	  with:
+        	python-version:['3.9', '3.10']
+
+	- name: Install Dependencies
+	  run: pip install requests
+
+	- name: Run weather script
+	  run: python weather.py
