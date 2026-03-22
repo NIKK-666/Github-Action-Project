@@ -25,4 +25,4 @@ jobs:
       run: pip install requests
 
     - name: Run weather script
-      run: python weather.py
+      run: python python project/weather.py
